@@ -157,50 +157,64 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 						<div class="col-md-12">
 
 							<form action="" id="business-card-form" onsubmit="return false">
-								
-								<fieldset>
 									
-									<h1>Price Calculator</h1>
+								<h1>Price Calculator</h1>
 
-									<label>Paper Size</label>
-									<select id="business-card-size" name='business-card-size' onchange="calculateBusinessCardPrice()">
-										<option value="None">Select Paper Size</option>
-										<option value="Size 1">Size 1($20)</option>
-										<option value="Size 2">Size 2($25)</option>
-										<option value="Size 3">Size 3($35)</option>
-										<option value="Size 4">Size 4($75)</option>
-										<option value="Size 5">Size 5($80)</option>
-									</select>
+								<div class="row">
+									
+									<div class="col-md-6">
+										
+										<label>Paper Size</label>
+										<select id="business-card-size" name='business-card-size' class="form-control" onchange="calculateBusinessCardPrice()">
+											<option value="None">Select Paper Size</option>
+											<option value="Size 1">Size 1($20)</option>
+											<option value="Size 2">Size 2($25)</option>
+											<option value="Size 3">Size 3($35)</option>
+											<option value="Size 4">Size 4($75)</option>
+											<option value="Size 5">Size 5($80)</option>
+										</select>
 
-									<hr>
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-6">
+										
+										<label >Paper Type</label>
+										<select id="business-card-type" name='business-card-type' class="form-control" onchange="calculateBusinessCardPrice()">
+											<option value="None">Select Paper Type</option>
+											<option value="Type 1">Type 1($5)</option>
+											<option value="Type 2">Type 2($5)</option>
+											<option value="Type 3">Type 3($7)</option>
+											<option value="Type 4">Type 4($8)</option>
+											<option value="Type 5">Type 5($10)</option>
+										</select>
 
-									<label >Paper Type</label>
-									<select id="business-card-type" name='business-card-type' onchange="calculateBusinessCardPrice()">
-										<option value="None">Select Paper Type</option>
-										<option value="Type 1">Type 1($5)</option>
-										<option value="Type 2">Type 2($5)</option>
-										<option value="Type 3">Type 3($7)</option>
-										<option value="Type 4">Type 4($8)</option>
-										<option value="Type 5">Type 5($10)</option>
-									</select>
+									</div><!-- /.col-md-6 -->
 
-									<hr>
+								</div><!-- /.row -->
 
-									<label >Ink Type</label>
-									<select id="business-card-ink-type" name='business-card-ink-type' onchange="calculateBusinessCardPrice()">
-										<option value="None">Select Ink Type</option>
-										<option value="Ink 1">Ink 1($5)</option>
-										<option value="Ink 2">Ink 2($5)</option>
-										<option value="Ink 3">Ink 3($7)</option>
-										<option value="Ink 4">Ink 4($8)</option>
-										<option value="Ink 5">Ink 5($10)</option>
-									</select>
+								<hr>
 
-									<hr>
+								<div class="row">
+									
+									<div class="col-md-6">
+										
+										<label >Ink Type</label>
+										<select id="business-card-ink-type" name='business-card-ink-type' class="form-control" onchange="calculateBusinessCardPrice()">
+											<option value="None">Select Ink Type</option>
+											<option value="Ink 1">Ink 1($5)</option>
+											<option value="Ink 2">Ink 2($5)</option>
+											<option value="Ink 3">Ink 3($7)</option>
+											<option value="Ink 4">Ink 4($8)</option>
+											<option value="Ink 5">Ink 5($10)</option>
+										</select>
 
-									<div id="business-card-total-price"></div>
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-6 total-price">
+										
+										<div id="business-card-total-price"></div>
 
-								</fieldset>
+									</div>
+
+								</div><!-- /.row -->
 
 							</form><!-- /#business-card-form -->
 
