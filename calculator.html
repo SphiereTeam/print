@@ -61,7 +61,6 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	<script type="text/javascript" src="js/product-calculations.js"></script>
 	<link href="css/paperform.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="inner-page">
@@ -133,12 +132,12 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 				
 				<ul class="resp-tabs-list hor_1">
 					
-					<li><i class="fh5co-tab-menu-icon"></i>Business Card</li>
+					<li><i class="fh5co-tab-menu-icon"></i>Flyers</li>
 					<li><i class="fh5co-tab-menu-icon "></i>Invitation Card</li>
 					<li><i class="fh5co-tab-menu-icon"></i>Paper Bags, Card Boxes, Customized Packaging</li>
 
 					<li><i class="fh5co-tab-menu-icon"></i>Photobook</li>
-					<li><i class="fh5co-tab-menu-icon"></i>Brochures, Flyers</li>
+					<li><i class="fh5co-tab-menu-icon"></i>Business Card</li>
 					<li><i class="fh5co-tab-menu-icon"></i>Envelopes</li>
 
 					<li><i class="fh5co-tab-menu-icon"></i>Postcards</li>
@@ -151,12 +150,12 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 					<div class="row">
 
 						<div class="col-md-12">
-							<h2 class="h2">Business Card</h2>
+							<h2 class="h2">Flyers</h2>
 						</div><!-- /.col-md-12 -->
 
 						<div class="col-md-12">
 
-							<form action="" id="business-card-form" onsubmit="return false">
+							<form action="" id="flyer-form" onsubmit="return false">
 									
 								<h1>Price Calculator</h1>
 
@@ -165,52 +164,41 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 									<div class="col-md-6">
 										
 										<label>Paper Size</label>
-										<select id="business-card-size" name='business-card-size' class="form-control" onchange="calculateBusinessCardPrice()">
+										<select id="flyer-paper-size" name='flyer-paper-size' class="form-control">
 											<option value="None">Select Paper Size</option>
-											<option value="Size 1">Size 1($20)</option>
-											<option value="Size 2">Size 2($25)</option>
-											<option value="Size 3">Size 3($35)</option>
-											<option value="Size 4">Size 4($75)</option>
-											<option value="Size 5">Size 5($80)</option>
+											<option value="A4">A4</option>
+											<option value="A5">A5</option>
 										</select>
 
-									</div><!-- /.col-md-6 -->
-									<div class="col-md-6">
-										
-										<label >Paper Type</label>
-										<select id="business-card-type" name='business-card-type' class="form-control" onchange="calculateBusinessCardPrice()">
+										<label>Paper Type</label>
+										<select id="flyer-paper-type" name='flyer-paper-type' class="form-control">
 											<option value="None">Select Paper Type</option>
-											<option value="Type 1">Type 1($5)</option>
-											<option value="Type 2">Type 2($5)</option>
-											<option value="Type 3">Type 3($7)</option>
-											<option value="Type 4">Type 4($8)</option>
-											<option value="Type 5">Type 5($10)</option>
+											<option value="Coated">Coated</option>
+											<option value="Uncoated">Uncoated</option>
+											<option value="Matte">Matte</option>
+											<option value="Glossy">Glossy</option>
 										</select>
 
-									</div><!-- /.col-md-6 -->
-
-								</div><!-- /.row -->
-
-								<hr>
-
-								<div class="row">
-									
-									<div class="col-md-6">
-										
-										<label >Ink Type</label>
-										<select id="business-card-ink-type" name='business-card-ink-type' class="form-control" onchange="calculateBusinessCardPrice()">
-											<option value="None">Select Ink Type</option>
-											<option value="Ink 1">Ink 1($5)</option>
-											<option value="Ink 2">Ink 2($5)</option>
-											<option value="Ink 3">Ink 3($7)</option>
-											<option value="Ink 4">Ink 4($8)</option>
-											<option value="Ink 5">Ink 5($10)</option>
+										<label>Color</label>
+										<select id="flyer-paper-color" name='flyer-paper-color' class="form-control">
+											<option value="None">Select Color</option>
+											<option value="oneside">1 Side</option>
+											<option value="twosides">2 Sides</option>
 										</select>
+
+										<label>Quantity</label>
+										<select id="flyer-quantity" name='flyer-quantity' class="form-control">
+											<option value="None">Select Quantity</option>
+											<option value="100">100</option>
+											<option value="500">500</option>
+										</select>
+
+										<button onclick="calculateFlyerPrice()">Calculate</button>
 
 									</div><!-- /.col-md-6 -->
 									<div class="col-md-6 total-price">
 										
-										<div id="business-card-total-price"></div>
+										<div id="flyer-total-price"></div>
 
 									</div>
 
@@ -267,7 +255,7 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 					<div class="row">
 
 						<div class="col-md-12">
-							<h2 class="h2">Brochures, Flyers</h2>
+							<h2 class="h2">Business Card</h2>
 						</div><!-- /.col-md-12 -->
 
 						<div class="col-md-12">
@@ -367,6 +355,8 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 	<script src="js/fastclick.js"></script>
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
+	<!-- Calculations -->
+	<script type="text/javascript" src="js/product-calculations.js"></script>
 
 </body>
 </html>

@@ -1,87 +1,110 @@
 /*
-    Calculations for business cards
+	Calculations for flyers
 */
 
-//setup size prices
-var business_card_size_prices = new Array();
-business_card_size_prices["None"]=0;
-business_card_size_prices["Size 1"]=20;
-business_card_size_prices["Size 2"]=25;
-business_card_size_prices["Size 3"]=35;
-business_card_size_prices["Size 4"]=75;
-business_card_size_prices["Size 5"]=80;
+//setup paper size prices
+var flyer_paper_size_prices = new Array();
+flyer_paper_size_prices["None"]=0;
+flyer_paper_size_prices["A4"]=0.12;
+flyer_paper_size_prices["A5"]=0.12;
 
-//setup type prices
-var business_card_type_prices= new Array();
-business_card_type_prices["None"]=0;
-business_card_type_prices["Type 1"]=5;
-business_card_type_prices["Type 2"]=5;
-business_card_type_prices["Type 3"]=7;
-business_card_type_prices["Type 4"]=8;
-business_card_type_prices["Type 5"]=10;
+//setup paper type prices
+var flyer_paper_type_prices= new Array();
+flyer_paper_type_prices["None"]=0;
+flyer_paper_type_prices["Coated"]=5;
+flyer_paper_type_prices["Uncoated"]=5;
+flyer_paper_type_prices["Matte"]=7;
+flyer_paper_type_prices["Glossy"]=8;
 
-//setup ink type prices
-var business_card_ink_type_prices= new Array();
-business_card_ink_type_prices["None"]=0;
-business_card_ink_type_prices["Ink 1"]=5;
-business_card_ink_type_prices["Ink 2"]=5;
-business_card_ink_type_prices["Ink 3"]=7;
-business_card_ink_type_prices["Ink 4"]=8;
-business_card_ink_type_prices["Ink 5"]=10;
+//setup color prices
+var flyer_color_prices= new Array();
+flyer_color_prices["None"]=0;
+flyer_color_prices["oneside"]=5;
+flyer_color_prices["twosides"]=15;
+
+//setup quantity prices
+var flyer_quantity_prices= new Array();
+flyer_quantity_prices["None"]=0;
+flyer_quantity_prices["100"]=5;
+flyer_quantity_prices["500"]=15;
 
 //get size price from user input
-function getBusinessCardSizePrice(){  
+function getFlyerPaperSizePrice(){  
 
-    var business_card_size_price=0;
-    
-    var theForm = document.forms["business-card-form"];
-    
-    var card_size = theForm.elements["business-card-size"];
-    business_card_size_price = business_card_size_prices[card_size.value];
+	var result=0;
+	
+	var theForm = document.forms["flyer-form"];
+	
+	var user_input = theForm.elements["flyer-paper-size"];
 
-    //We return the business_card_size_price
-    return business_card_size_price;
+	result = flyer_paper_size_prices[user_input.value];
+
+	//We return the result
+	return result;
 }
 
 //get type price from user input
-function getBusinessCardTypePrice(){
+function getFlyerPaperTypePrice(){
 
-    var business_card_type_price=0;
-    
-    var theForm = document.forms["business-card-form"];
-    var card_type = theForm.elements["business-card-type"];
-    business_card_type_price = business_card_type_prices[card_type.value];
+	var result=0;
+	
+	var theForm = document.forms["flyer-form"];
 
-    //finally we return business_card_type_price
-    return business_card_type_price;
+	var user_input = theForm.elements["flyer-paper-type"];
+
+	result = flyer_paper_type_prices[user_input.value];
+
+	//finally we return result
+	return result;
 }
 
-//get ink type price from user input
-function getBusinessCardInkTypePrice(){
+//get color price from user input
+function getFlyerColorPrice(){
 
-    var business_card_ink_type_price=0;
-    
-    var theForm = document.forms["business-card-form"];
-    var card_ink_type = theForm.elements["business-card-ink-type"];
-    business_card_ink_type_price = business_card_ink_type_prices[card_ink_type.value];
+	var result=0;
+	
+	var theForm = document.forms["flyer-form"];
 
-    //finally we return business_card_ink_type_price
-    return business_card_ink_type_price;
+	var user_input = theForm.elements["flyer-paper-color"];
+
+	console.log( "Color value: " + flyer_color_prices[user_input.value] );
+
+	result = flyer_color_prices[user_input.value];
+
+	console.log("Color: " + result);
+
+	//finally we return result
+	return result;
 }
 
-function calculateBusinessCardPrice(){
+//get quantity price from user input
+function getFlyerQuantityPrice(){
 
-    var businessCardPrice = getBusinessCardSizePrice() + getBusinessCardTypePrice() + getBusinessCardInkTypePrice();
-    
-    //display the result
-    var divobj = document.getElementById('business-card-total-price');
-    divobj.style.display='block';
-    divobj.innerHTML = "Total Price: $"+businessCardPrice;
+	var result=0;
+	
+	var theForm = document.forms["flyer-form"];
 
+	var user_input = theForm.elements["flyer-quantity"];
+
+	result = flyer_quantity_prices[user_input.value];
+
+	console.log("Quantity: " + result);
+
+	//finally we return result
+	return result;
 }
 
-function hideTotal(){
+function calculateFlyerPrice(){
+	var total = getFlyerPaperSizePrice() + getFlyerPaperTypePrice() + getFlyerColorPrice() + getFlyerQuantityPrice();
+		
+	//display the result
+	var divobj = document.getElementById('flyer-total-price');
+	divobj.style.display='block';
+	divobj.innerHTML = "Total Price: $"+total.toFixed(2);
+}
 
-    var divobj = document.getElementById('business-card-total-price');
-    divobj.style.display='none';
+function hideFlyerTotalPrice(){
+
+	var divobj = document.getElementById('flyer-total-price');
+	divobj.style.display='none';
 }
