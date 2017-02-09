@@ -119,6 +119,39 @@ function getPrePressCharges(){
 
 }
 
+function getFinishingCharges(){
+
+	//get paper type
+	var paperType = getFlyerPaperType();
+
+	//get qty
+	var paperQty = getFlyerQuantity();
+
+	//get paper cuts from paper size
+	var paperSize = getFlyerPaperSize();
+	var paperCuts = 0;
+
+	if ( paperSize == "a4" ) {
+		paperCuts = 8;
+	}else if( paperSize == "a5" ){
+		paperCuts = 16;
+	}
+
+	//get qty sheets
+	//qty sheets = qty/cuts
+	var qtySheets = paperQty/paperCuts;
+
+	//get wastage qty sheets
+	var wastageQtySheets = 0;
+
+	if ( paperType == "mattart" ) {
+		wastageQtySheets = qtySheets * 1.1;
+	}else if( paperType == "simili" ){
+		wastageQtySheets = qtySheets * 1.2;
+	}
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
