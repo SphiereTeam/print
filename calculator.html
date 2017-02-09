@@ -179,19 +179,15 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 											<option value="Glossy">Glossy</option>
 										</select>
 
-										<label>Color</label>
-										<select id="flyer-paper-color" name='flyer-paper-color' class="form-control">
-											<option value="None">Select Color</option>
+										<label>Side</label>
+										<select id="flyer-paper-side" name='flyer-paper-side' class="form-control">
+											<option value="None">Select Side</option>
 											<option value="oneside">1 Side</option>
 											<option value="twosides">2 Sides</option>
 										</select>
 
 										<label>Quantity</label>
-										<select id="flyer-quantity" name='flyer-quantity' class="form-control">
-											<option value="None">Select Quantity</option>
-											<option value="100">100</option>
-											<option value="500">500</option>
-										</select>
+										<input id="flyer-quantity" type="number"/>
 
 										<button onclick="calculateFlyerPrice()">Calculate</button>
 

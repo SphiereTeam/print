@@ -2,109 +2,92 @@
 	Calculations for flyers
 */
 
-//setup paper size prices
-var flyer_paper_size_prices = new Array();
-flyer_paper_size_prices["None"]=0;
-flyer_paper_size_prices["A4"]=0.12;
-flyer_paper_size_prices["A5"]=0.12;
+function getFlyerPaperSize(){
+	var result = $('select[id=flyer-paper-size]').val();
+	console.log("Paper Size: " + result);
 
-//setup paper type prices
-var flyer_paper_type_prices= new Array();
-flyer_paper_type_prices["None"]=0;
-flyer_paper_type_prices["Coated"]=5;
-flyer_paper_type_prices["Uncoated"]=5;
-flyer_paper_type_prices["Matte"]=7;
-flyer_paper_type_prices["Glossy"]=8;
-
-//setup color prices
-var flyer_color_prices= new Array();
-flyer_color_prices["None"]=0;
-flyer_color_prices["oneside"]=5;
-flyer_color_prices["twosides"]=15;
-
-//setup quantity prices
-var flyer_quantity_prices= new Array();
-flyer_quantity_prices["None"]=0;
-flyer_quantity_prices["100"]=5;
-flyer_quantity_prices["500"]=15;
-
-//get size price from user input
-function getFlyerPaperSizePrice(){  
-
-	var result=0;
-	
-	var theForm = document.forms["flyer-form"];
-	
-	var user_input = theForm.elements["flyer-paper-size"];
-
-	result = flyer_paper_size_prices[user_input.value];
-
-	//We return the result
 	return result;
 }
 
-//get type price from user input
-function getFlyerPaperTypePrice(){
+function getFlyerPaperType(){
+	var result = $('select[id=flyer-paper-type]').val();
+	console.log("Paper Type: " + result);
 
-	var result=0;
-	
-	var theForm = document.forms["flyer-form"];
-
-	var user_input = theForm.elements["flyer-paper-type"];
-
-	result = flyer_paper_type_prices[user_input.value];
-
-	//finally we return result
 	return result;
 }
 
-//get color price from user input
-function getFlyerColorPrice(){
+function getFlyerPaperSide(){
+	var result = $('select[id=flyer-paper-side]').val();
+	console.log("Paper Side: " + result);
 
-	var result=0;
-	
-	var theForm = document.forms["flyer-form"];
-
-	var user_input = theForm.elements["flyer-paper-color"];
-
-	console.log( "Color value: " + flyer_color_prices[user_input.value] );
-
-	result = flyer_color_prices[user_input.value];
-
-	console.log("Color: " + result);
-
-	//finally we return result
 	return result;
 }
 
-//get quantity price from user input
-function getFlyerQuantityPrice(){
-
-	var result=0;
-	
-	var theForm = document.forms["flyer-form"];
-
-	var user_input = theForm.elements["flyer-quantity"];
-
-	result = flyer_quantity_prices[user_input.value];
-
+function getFlyerQuantity(){
+	var result = $("#flyer-quantity").val();
 	console.log("Quantity: " + result);
 
-	//finally we return result
 	return result;
+
 }
 
 function calculateFlyerPrice(){
-	var total = getFlyerPaperSizePrice() + getFlyerPaperTypePrice() + getFlyerColorPrice() + getFlyerQuantityPrice();
-		
-	//display the result
-	var divobj = document.getElementById('flyer-total-price');
-	divobj.style.display='block';
-	divobj.innerHTML = "Total Price: $"+total.toFixed(2);
-}
 
-function hideFlyerTotalPrice(){
+	//clear existing html
+	$('#flyer-total-price').html('');
 
-	var divobj = document.getElementById('flyer-total-price');
-	divobj.style.display='none';
+	//get paper cuts from paper size
+	var paperCuts = 0;
+	if( getFlyerPaperSize() == "A4" ){
+		paperCuts = 8;
+	}else if( getFlyerPaperSize() == "A5" ){
+		paperCuts = 16;
+	}
+
+	//insert codes for paper type here
+
+	//get paper side cost
+	var paperSideCost = 0;
+	if( getFlyerPaperSide() == "oneside" ){
+		paperSideCost = 0.5;
+	}else if( getFlyerPaperSide()  == "twosides" ){
+		paperSideCost = 0.7;
+	}
+
+	//get printer from quantity
+	// 0 -> Digital
+	// 1 -> Not Digital
+	var printer = 0;
+	if ( getFlyerQuantity() > 0 ) {
+
+		if ( getFlyerQuantity() > 300 ) {
+			//if qty is more than 300
+			printer = 1;
+		}
+
+	}else{
+		//insert codes handling 0 qty here
+	}
+
+	//calculate price
+	var totalPrice = 0;
+	if ( printer == 0 ) {
+		//if printer is digital
+		totalPrice = paperSideCost * getFlyerQuantity();
+
+	}else if( printer == 1 ){
+		//if printer is not digital
+
+	}else{
+		//insert codes handling other values of printer here
+	}
+
+	//append new html
+	$('#flyer-total-price').append(
+		"<h3> Paper Size: " + getFlyerPaperSize() + "</h3>" +
+		"<h3> Paper Type: " + getFlyerPaperType() + "</h3>" +
+		"<h3> Paper Side: " + getFlyerPaperSide() + "</h3>" +
+		"<h3> Quantity: " + getFlyerQuantity() + "</h3>" +
+		"<h3> Total Price: $" + totalPrice + "</h3>"
+	);
 }
