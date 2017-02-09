@@ -72,9 +72,50 @@ function getMaterialsCost(){
 	//wastage = price w/o wastage x 0.2
 	var wastage = priceWithoutWastage * 0.2;
 
-	//get price with wastage
-	//price with wastage = price w/o wastage + wastage
+	//get final materials cost
+	//final materials cost = price w/o wastage + wastage
 	return priceWithoutWastage + wastage;
+
+}
+
+function getPrePressCharges(){
+
+	//get suitable plate type from quantity
+	//0 -> DIGITAL -> less than 300
+	//1 -> OFFSET -> more than 300
+	var plateType = 0;
+
+	if ( getFlyerQuantity() > 0 ) {
+
+		if ( getFlyerQuantity() > 300 ) {
+			plateType = 1;
+		}
+
+	}else{
+		//insert codes for handling 0 qty
+	}
+
+	//get plate qty from paper color
+	var plateQty = 0;
+
+	if ( getFlyerPaperColor()  == "full-color" ) {
+		plateQty = 4;
+	}else if( getFlyerPaperColor()  == "black-white" ){
+		plateQty = 1;
+	}
+
+	//get plate price from plate type
+	var platePrice = 0;
+
+	if ( plateType == 0 ) {
+		platePrice = 0.26;
+	}else if( plateType == 1 ){
+		platePrice = 15;
+	}
+
+	//get final prepress charges
+	//final prepress charges = plateQty x platePrice
+	return plateQty * platePrice;
 
 }
 
@@ -85,6 +126,7 @@ function calculateFlyerPrice(){
 
 	//append new html
 	$('#flyer-total-price').append(
-		"<h3> Total Cost of Materials: $" + getMaterialsCost() + "</h3>"
+		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
+		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>"
 	);
 }
