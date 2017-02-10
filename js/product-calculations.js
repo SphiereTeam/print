@@ -252,6 +252,12 @@ function getGrandTotal(){
 
 }
 
+function getUnitPrice(){
+
+	return getGrandTotal() / getFlyerQuantity();
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
@@ -265,6 +271,7 @@ function calculateFlyerPrice(){
 		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
 		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
 		"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
-		"<h3> Grand Total: $" + getGrandTotal() + "</h3>"
+		"<h3> Grand Total: $" + getGrandTotal() + "</h3>" +
+		"<h3> Unit Price: $" + getUnitPrice() + "</h3>"
 	);
 }
