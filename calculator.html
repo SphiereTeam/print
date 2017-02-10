@@ -166,28 +166,30 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 										<label>Paper Size</label>
 										<select id="flyer-paper-size" name='flyer-paper-size' class="form-control">
 											<option value="None">Select Paper Size</option>
-											<option value="A4">A4</option>
-											<option value="A5">A5</option>
+											<option value="a4">A4</option>
+											<option value="a5">A5</option>
 										</select>
 
 										<label>Paper Type</label>
 										<select id="flyer-paper-type" name='flyer-paper-type' class="form-control">
 											<option value="None">Select Paper Type</option>
-											<option value="Coated">Coated</option>
-											<option value="Uncoated">Uncoated</option>
-											<option value="Matte">Matte</option>
-											<option value="Glossy">Glossy</option>
+											<option value="mattart">Mattart</option>
+											<option value="simili">Simili</option>
 										</select>
 
-										<label>Side</label>
-										<select id="flyer-paper-side" name='flyer-paper-side' class="form-control">
-											<option value="None">Select Side</option>
-											<option value="oneside">1 Side</option>
-											<option value="twosides">2 Sides</option>
+										<label>Paper Color</label>
+										<select id="flyer-paper-color" name='flyer-paper-color' class="form-control">
+											<option value="None">Select Color</option>
+											<option value="full-color">Full Color</option>
+											<option value="black-white">Black and White</option>
 										</select>
 
 										<label>Quantity</label>
 										<input id="flyer-quantity" type="number"/>
+
+										<label><input type="checkbox" id="flyer-paper-fold" value="folded"> Folded</label>
+
+										<label><input type="checkbox" id="flyer-paper-artwork" value="available"> Artwork Available</label>
 
 										<button onclick="calculateFlyerPrice()">Calculate</button>
 
