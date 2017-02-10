@@ -245,6 +245,13 @@ function getDesignCharges(){
 
 }
 
+function getGrandTotal(){
+
+	return getMaterialsCost() + getPrePressCharges() + getFinishingCharges() +
+		getPrintingCharges() + getLabourCharges() + getDesignCharges();
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
@@ -257,6 +264,7 @@ function calculateFlyerPrice(){
 		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
 		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
 		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
-		"<h3> Design Charges: $" + getDesignCharges() + "</h3>"
+		"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
+		"<h3> Grand Total: $" + getGrandTotal() + "</h3>"
 	);
 }
