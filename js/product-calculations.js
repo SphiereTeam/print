@@ -4,28 +4,28 @@
 
 function getFlyerPaperSize(){
 	var result = $('select[id=flyer-paper-size]').val();
-	console.log("Paper Size: " + result);
+	//console.log("Paper Size: " + result);
 
 	return result;
 }
 
 function getFlyerPaperType(){
 	var result = $('select[id=flyer-paper-type]').val();
-	console.log("Paper Type: " + result);
+	//console.log("Paper Type: " + result);
 
 	return result;
 }
 
 function getFlyerPaperColor(){
 	var result = $('select[id=flyer-paper-color]').val();
-	console.log("Paper Color: " + result);
+	//console.log("Paper Color: " + result);
 
 	return result;
 }
 
 function getFlyerQuantity(){
 	var result = $("#flyer-quantity").val();
-	console.log("Quantity: " + result);
+	//console.log("Quantity: " + result);
 
 	return result;
 
@@ -33,7 +33,7 @@ function getFlyerQuantity(){
 
 function getFlyerFoldStatus(){
 	var result = $("#flyer-paper-fold").is(':checked');
-	console.log("Folded: " + result);
+	//console.log("Folded: " + result);
 
 	return result;
 
@@ -185,6 +185,32 @@ function getFinishingCharges(){
 
 }
 
+function getPrintingCharges(){
+
+	//get qty
+	var paperQty = getFlyerQuantity();
+	console.log("Paper Qty: " + paperQty);
+
+
+	//get initial printing charges
+	//initial printing charges = paperQty / 2000
+	var initPrintCharges = paperQty / 2000;
+	console.log("Initial Printing Charges: " + initPrintCharges);
+
+	//get printing charges per hour
+	var printChargesPerHour = 35;
+	if ( paperQty > 10000 ) {
+		printChargesPerHour = 40;
+	}
+	console.log("Print Charges Per Hour: " + printChargesPerHour);
+
+	//get final printing charges
+	//final printing charges = initPrintCharges x printChargesPerHour
+	console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
+	return initPrintCharges * printChargesPerHour;
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
@@ -194,6 +220,7 @@ function calculateFlyerPrice(){
 	$('#flyer-total-price').append(
 		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
 		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
-		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>"
+		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
+		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>"
 	);
 }
