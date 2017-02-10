@@ -211,6 +211,12 @@ function getPrintingCharges(){
 
 }
 
+function getLabourCharges(){
+
+	return 20;
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
@@ -221,6 +227,7 @@ function calculateFlyerPrice(){
 		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
 		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
 		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
-		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>"
+		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
+		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>"
 	);
 }
