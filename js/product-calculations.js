@@ -31,6 +31,14 @@ function getFlyerQuantity(){
 
 }
 
+function getFlyerFoldStatus(){
+	var result = $("#flyer-paper-fold").is(':checked');
+	console.log("Folded: " + result);
+
+	return result;
+
+}
+
 function getMaterialsCost(){
 
 	//get paper cuts from paper size
@@ -150,6 +158,31 @@ function getFinishingCharges(){
 		wastageQtySheets = qtySheets * 1.2;
 	}
 
+	//get cutting/trimming charges
+	var cuttingCharges = 0;
+	var cuttingPricePerUnit = 0.08;
+	if ( paperQty > 1000 ) {
+		cuttingPricePerUnit = 0.1;
+	}
+	cuttingCharges = wastageQtySheets *cuttingPricePerUnit;
+
+	//get perforation/folding charges
+	var foldingCharges = 0;
+	var foldingPricePerUnit = 0.01;
+	if ( paperQty > 2000 ) {
+		foldingPricePerUnit = 0.008;
+	}
+	foldingCharges = paperQty * foldingPricePerUnit;
+
+	//get final finishing charges
+	//final finishing charges = cuttingCharges + foldingCharges
+
+	if( getFlyerFoldStatus() ){
+		return cuttingCharges + foldingCharges;
+	}else{
+		return cuttingCharges;
+	}
+
 }
 
 function calculateFlyerPrice(){
@@ -160,6 +193,7 @@ function calculateFlyerPrice(){
 	//append new html
 	$('#flyer-total-price').append(
 		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
-		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>"
+		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
+		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>"
 	);
 }
