@@ -39,6 +39,14 @@ function getFlyerFoldStatus(){
 
 }
 
+function getFlyerArtworkStatus(){
+	var result = $("#flyer-paper-artwork").is(':checked');
+	//console.log("Folded: " + result);
+
+	return result;
+
+}
+
 function getMaterialsCost(){
 
 	//get paper cuts from paper size
@@ -189,24 +197,23 @@ function getPrintingCharges(){
 
 	//get qty
 	var paperQty = getFlyerQuantity();
-	console.log("Paper Qty: " + paperQty);
-
+	//console.log("Paper Qty: " + paperQty);
 
 	//get initial printing charges
 	//initial printing charges = paperQty / 2000
 	var initPrintCharges = paperQty / 2000;
-	console.log("Initial Printing Charges: " + initPrintCharges);
+	//console.log("Initial Printing Charges: " + initPrintCharges);
 
 	//get printing charges per hour
 	var printChargesPerHour = 35;
 	if ( paperQty > 10000 ) {
 		printChargesPerHour = 40;
 	}
-	console.log("Print Charges Per Hour: " + printChargesPerHour);
+	//console.log("Print Charges Per Hour: " + printChargesPerHour);
 
 	//get final printing charges
 	//final printing charges = initPrintCharges x printChargesPerHour
-	console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
+	//console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
 	return initPrintCharges * printChargesPerHour;
 
 }
@@ -214,6 +221,27 @@ function getPrintingCharges(){
 function getLabourCharges(){
 
 	return 20;
+
+}
+
+function getDesignCharges(){
+
+	//get qty
+	var paperQty = getFlyerQuantity();
+
+	//get initial design charges
+	//initial design charges = paperQty/1000
+	var initDesignCharges  = paperQty / 1000;
+
+	//get design per hour charges
+	var designPerHourCharges = 30;
+	if ( getFlyerArtworkStatus() ) {
+		designPerHourCharges = 10;
+	}
+
+	//get final design charges
+	//final design charges = initDesignCharges x designPerHourCharges
+	return initDesignCharges * designPerHourCharges;
 
 }
 
@@ -228,6 +256,7 @@ function calculateFlyerPrice(){
 		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
 		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
 		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
-		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>"
+		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
+		"<h3> Design Charges: $" + getDesignCharges() + "</h3>"
 	);
 }
