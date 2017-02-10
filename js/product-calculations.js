@@ -258,6 +258,16 @@ function getUnitPrice(){
 
 }
 
+function getTotalPricePlusProfitMargin(){
+
+	//get initial price
+	var initialPrice = getUnitPrice() * 1.4;
+
+	//get final price
+	return initialPrice * getFlyerQuantity();
+
+}
+
 function calculateFlyerPrice(){
 
 	//clear existing html
@@ -272,6 +282,7 @@ function calculateFlyerPrice(){
 		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
 		"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
 		"<h3> Grand Total: $" + getGrandTotal() + "</h3>" +
-		"<h3> Unit Price: $" + getUnitPrice() + "</h3>"
+		"<h3> Unit Price: $" + getUnitPrice() + "</h3>" +
+		"<h3> Total Price Plus Profit Margin: $" + getTotalPricePlusProfitMargin() + "</h3>"
 	);
 }
