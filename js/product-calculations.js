@@ -90,7 +90,8 @@ function getMaterialsCost(){
 
 	//get final materials cost
 	//final materials cost = price w/o wastage + wastage
-	return priceWithoutWastage + wastage;
+	//return final materials cost rounded off to 2 decimal places
+	return (priceWithoutWastage + wastage).toFixed(2);
 
 }
 
@@ -131,7 +132,8 @@ function getPrePressCharges(){
 
 	//get final prepress charges
 	//final prepress charges = plateQty x platePrice
-	return plateQty * platePrice;
+	//return final prepress charges rounded off to 2 decimal places
+	return (plateQty * platePrice).toFixed(2);
 
 }
 
@@ -184,11 +186,12 @@ function getFinishingCharges(){
 
 	//get final finishing charges
 	//final finishing charges = cuttingCharges + foldingCharges
+	//return final finishing charges rounded off to 2 decimal places
 
 	if( getFlyerFoldStatus() ){
-		return cuttingCharges + foldingCharges;
+		return (cuttingCharges + foldingCharges).toFixed(2);
 	}else{
-		return cuttingCharges;
+		return (cuttingCharges).toFixed(2);
 	}
 
 }
@@ -213,8 +216,9 @@ function getPrintingCharges(){
 
 	//get final printing charges
 	//final printing charges = initPrintCharges x printChargesPerHour
+	//return final printing charges rounded off to 2 decimal places
 	//console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
-	return initPrintCharges * printChargesPerHour;
+	return (initPrintCharges * printChargesPerHour).toFixed(2);
 
 }
 
@@ -241,30 +245,38 @@ function getDesignCharges(){
 
 	//get final design charges
 	//final design charges = initDesignCharges x designPerHourCharges
-	return initDesignCharges * designPerHourCharges;
+	//return final design charges rounded off to 2 decimal places
+	return (initDesignCharges * designPerHourCharges).toFixed(2);
 
 }
 
 function getGrandTotal(){
 
-	return getMaterialsCost() + getPrePressCharges() + getFinishingCharges() +
-		getPrintingCharges() + getLabourCharges() + getDesignCharges();
+	//return grand total rounded off to 2 decimal places
+	var grandTotal = 0;
+	grandTotal = ( getMaterialsCost() * 1 ) + ( getPrePressCharges() * 1 ) + ( getFinishingCharges() * 1 ) +
+	( getPrintingCharges() * 1 ) + ( getLabourCharges() * 1 ) + ( getDesignCharges() * 1 );
+	return grandTotal.toFixed(2);
 
 }
 
 function getUnitPrice(){
 
-	return getGrandTotal() / getFlyerQuantity();
+	//return unit price rounded off to 2 decimal places
+	//unit price = grand total / flyer qty
+	return ( ( getGrandTotal() * 1 ) / ( getFlyerQuantity() * 1 ) ).toFixed(2);
 
 }
 
 function getTotalPricePlusProfitMargin(){
 
 	//get initial price
-	var initialPrice = getUnitPrice() * 1.4;
+	var initialPrice = ( getUnitPrice() * 1 ) * 1.4;
 
 	//get final price
-	return initialPrice * getFlyerQuantity();
+	//final price = initial price * flyer qty
+	//return final price rounded off to 2 decimal places
+	return ( initialPrice * ( getFlyerQuantity() * 1 ) ).toFixed(2);
 
 }
 
