@@ -263,8 +263,8 @@ function displayFlyerCalculations(){
 	$('#flyer-total-price').html('');
 
 	//check if all fields entered
-	if( ( getFlyerPaperSize() != "None" ) && ( getFlyerPaperType() != "None" ) && 
-		( getFlyerPaperColor() != "None" ) && ( getFlyerQuantity() != "" )  ){
+	if( ( getFlyerPaperSize() != "" ) && ( getFlyerPaperType() != "" ) && 
+		( getFlyerPaperColor() != "" ) && ( getFlyerQuantity() != "" )  ){
 		//check qty
 		var qty = getFlyerQuantity();
 		if( qty >= 1 && qty <= 50000 ){
