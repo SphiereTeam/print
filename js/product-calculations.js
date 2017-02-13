@@ -280,7 +280,7 @@ function getTotalPricePlusProfitMargin(){
 
 }
 
-function calculateFlyerPrice(){
+function displayFlyerCalculations(){
 
 	//clear existing html
 	$('#flyer-total-price').html('');
@@ -309,6 +309,5 @@ function calculateFlyerPrice(){
 		);
 
 	}
-
-		
+	
 }

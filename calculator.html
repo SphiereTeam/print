@@ -185,13 +185,13 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 										</select>
 
 										<label>Quantity</label>
-										<input id="flyer-quantity" type="number"/>
+										<input id="flyer-quantity" type="number" min="1" max="50000" required/>
 
 										<label><input type="checkbox" id="flyer-paper-fold" value="folded"> Folded</label>
 
 										<label><input type="checkbox" id="flyer-paper-artwork" value="available"> Artwork Available</label>
 
-										<button onclick="calculateFlyerPrice()">Calculate</button>
+										<button onclick="displayFlyerCalculations()">Calculate</button>
 
 									</div><!-- /.col-md-6 -->
 									<div class="col-md-6 total-price">
