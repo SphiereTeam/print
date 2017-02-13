@@ -285,16 +285,30 @@ function calculateFlyerPrice(){
 	//clear existing html
 	$('#flyer-total-price').html('');
 
-	//append new html
-	$('#flyer-total-price').append(
-		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
-		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
-		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
-		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
-		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
-		"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
-		"<h3> Grand Total: $" + getGrandTotal() + "</h3>" +
-		"<h3> Unit Price: $" + getUnitPrice() + "</h3>" +
-		"<h3> Total Price Plus Profit Margin: $" + getTotalPricePlusProfitMargin() + "</h3>"
-	);
+	//check if all fields entered
+	if( ( getFlyerPaperSize() != "None" ) && ( getFlyerPaperType() != "None" ) && ( getFlyerPaperColor() != "None" ) && ( getFlyerQuantity() != "" )  ){
+
+		//append new html
+		$('#flyer-total-price').append(
+			"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
+			"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
+			"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
+			"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
+			"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
+			"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
+			"<h3> Grand Total: $" + getGrandTotal() + "</h3>" +
+			"<h3> Unit Price: $" + getUnitPrice() + "</h3>" +
+			"<h3> Total Price Plus Profit Margin: $" + getTotalPricePlusProfitMargin() + "</h3>"
+		);
+
+	}else{
+
+		//append new html
+		$('#flyer-total-price').append(
+			"<h3> Please enter paper size, paper type, paper color, and quantity. </h3>"
+		);
+
+	}
+
+		
 }
