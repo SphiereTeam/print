@@ -28,7 +28,6 @@ function getFlyerQuantity(){
 	//console.log("Quantity: " + result);
 
 	return result;
-
 }
 
 function getFlyerFoldStatus(){
@@ -36,7 +35,6 @@ function getFlyerFoldStatus(){
 	//console.log("Folded: " + result);
 
 	return result;
-
 }
 
 function getFlyerArtworkStatus(){
@@ -44,11 +42,9 @@ function getFlyerArtworkStatus(){
 	//console.log("Folded: " + result);
 
 	return result;
-
 }
 
-function getMaterialsCost(){
-
+function getFlyerMaterialsCost(){
 	//get paper cuts from paper size
 	var paperSize = getFlyerPaperSize();
 	var paperCuts = 0;
@@ -90,12 +86,11 @@ function getMaterialsCost(){
 
 	//get final materials cost
 	//final materials cost = price w/o wastage + wastage
-	return priceWithoutWastage + wastage;
-
+	//return final materials cost rounded off to 2 decimal places
+	return (priceWithoutWastage + wastage).toFixed(2);
 }
 
-function getPrePressCharges(){
-
+function getFlyerPrePressCharges(){
 	//get suitable plate type from quantity
 	//0 -> DIGITAL -> less than 300
 	//1 -> OFFSET -> more than 300
@@ -131,12 +126,11 @@ function getPrePressCharges(){
 
 	//get final prepress charges
 	//final prepress charges = plateQty x platePrice
-	return plateQty * platePrice;
-
+	//return final prepress charges rounded off to 2 decimal places
+	return (plateQty * platePrice).toFixed(2);
 }
 
-function getFinishingCharges(){
-
+function getFlyerFinishingCharges(){
 	//get paper type
 	var paperType = getFlyerPaperType();
 
@@ -184,17 +178,16 @@ function getFinishingCharges(){
 
 	//get final finishing charges
 	//final finishing charges = cuttingCharges + foldingCharges
+	//return final finishing charges rounded off to 2 decimal places
 
 	if( getFlyerFoldStatus() ){
-		return cuttingCharges + foldingCharges;
+		return (cuttingCharges + foldingCharges).toFixed(2);
 	}else{
-		return cuttingCharges;
+		return (cuttingCharges).toFixed(2);
 	}
-
 }
 
-function getPrintingCharges(){
-
+function getFlyerPrintingCharges(){
 	//get qty
 	var paperQty = getFlyerQuantity();
 	//console.log("Paper Qty: " + paperQty);
@@ -213,19 +206,14 @@ function getPrintingCharges(){
 
 	//get final printing charges
 	//final printing charges = initPrintCharges x printChargesPerHour
+	//return final printing charges rounded off to 2 decimal places
 	//console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
-	return initPrintCharges * printChargesPerHour;
-
+	return (initPrintCharges * printChargesPerHour).toFixed(2);
 }
 
-function getLabourCharges(){
+function getFlyerLabourCharges(){ return 20; }
 
-	return 20;
-
-}
-
-function getDesignCharges(){
-
+function getFlyerDesignCharges(){
 	//get qty
 	var paperQty = getFlyerQuantity();
 
@@ -241,48 +229,69 @@ function getDesignCharges(){
 
 	//get final design charges
 	//final design charges = initDesignCharges x designPerHourCharges
-	return initDesignCharges * designPerHourCharges;
-
+	//return final design charges rounded off to 2 decimal places
+	return (initDesignCharges * designPerHourCharges).toFixed(2);
 }
 
-function getGrandTotal(){
-
-	return getMaterialsCost() + getPrePressCharges() + getFinishingCharges() +
-		getPrintingCharges() + getLabourCharges() + getDesignCharges();
-
+function getFlyerGrandTotal(){
+	//return grand total rounded off to 2 decimal places
+	var grandTotal = 0;
+	grandTotal = ( getFlyerMaterialsCost() * 1 ) + ( getFlyerPrePressCharges() * 1 ) + ( getFlyerFinishingCharges() * 1 ) +
+	( getFlyerPrintingCharges() * 1 ) + ( getFlyerLabourCharges() * 1 ) + ( getFlyerDesignCharges() * 1 );
+	return grandTotal.toFixed(2);
 }
 
-function getUnitPrice(){
-
-	return getGrandTotal() / getFlyerQuantity();
-
+function getFlyerUnitPrice(){
+	//return unit price rounded off to 2 decimal places
+	//unit price = grand total / flyer qty
+	return ( ( getFlyerGrandTotal() * 1 ) / ( getFlyerQuantity() * 1 ) ).toFixed(2);
 }
 
-function getTotalPricePlusProfitMargin(){
-
+function getFlyerTotalPrice(){
 	//get initial price
-	var initialPrice = getUnitPrice() * 1.4;
+	var initialPrice = ( getFlyerUnitPrice() * 1 ) * 1.4;
 
 	//get final price
-	return initialPrice * getFlyerQuantity();
-
+	//final price = initial price * flyer qty
+	//return final price rounded off to 2 decimal places
+	return ( initialPrice * ( getFlyerQuantity() * 1 ) ).toFixed(2);
 }
 
-function calculateFlyerPrice(){
+function displayFlyerCalculations(){
 
 	//clear existing html
 	$('#flyer-total-price').html('');
 
-	//append new html
-	$('#flyer-total-price').append(
-		"<h3> Materials: $" + getMaterialsCost() + "</h3>" +
-		"<h3> PrePress Charges: $" + getPrePressCharges() + "</h3>" +
-		"<h3> Finishing Charges: $" + getFinishingCharges() + "</h3>" +
-		"<h3> Printing Charges: $" + getPrintingCharges() + "</h3>" +
-		"<h3> Labour Charges: $" + getLabourCharges() + "</h3>" +
-		"<h3> Design Charges: $" + getDesignCharges() + "</h3>" +
-		"<h3> Grand Total: $" + getGrandTotal() + "</h3>" +
-		"<h3> Unit Price: $" + getUnitPrice() + "</h3>" +
-		"<h3> Total Price Plus Profit Margin: $" + getTotalPricePlusProfitMargin() + "</h3>"
-	);
+	//check if all fields entered
+	if( ( getFlyerPaperSize() != "" ) && ( getFlyerPaperType() != "" ) && 
+		( getFlyerPaperColor() != "" ) && ( getFlyerQuantity() != "" )  ){
+		//check qty
+		var qty = getFlyerQuantity();
+		if( qty >= 1 && qty <= 50000 ){
+			//if qty within range
+
+			//append new html
+			$('#flyer-total-price').append(
+				"<h3> Materials: $" + getFlyerMaterialsCost() + "</h3>" +
+				"<h3> PrePress Charges: $" + getFlyerPrePressCharges() + "</h3>" +
+				"<h3> Finishing Charges: $" + getFlyerFinishingCharges() + "</h3>" +
+				"<h3> Printing Charges: $" + getFlyerPrintingCharges() + "</h3>" +
+				"<h3> Labour Charges: $" + getFlyerLabourCharges() + "</h3>" +
+				"<h3> Design Charges: $" + getFlyerDesignCharges() + "</h3>" +
+				"<h3> Grand Total: $" + getFlyerGrandTotal() + "</h3>" +
+				"<h3> Unit Price: $" + getFlyerUnitPrice() + "</h3>" +
+				"<h3> Total Price Plus Profit Margin: $" + getFlyerTotalPrice() + "</h3>"
+			);
+		}else{
+			//append new html
+			$('#flyer-total-price').append(
+				"<h3>Quantity can only be from 1 to 50000.</h3>"
+			);
+		}
+	}else{
+		//append new html
+		$('#flyer-total-price').append(
+			"<h3> Please enter paper size, paper type, paper color, and quantity. </h3>"
+		);
+	}
 }
