@@ -519,6 +519,20 @@ function getBrochureDesignCharges(){
 	return (initDesignCharges * designPerHourCharges).toFixed(2);
 }
 
+function getBrochureGrandTotal(){
+	//return grand total rounded off to 2 decimal places
+	var grandTotal = 0;
+	grandTotal = ( getBrochureMaterialsCost() * 1 ) + ( getBrochurePrePressCharges() * 1 ) + ( getBrochureFinishingCharges() * 1 ) +
+	( getBrochurePrintingCharges() * 1 ) + ( getBrochureLabourCharges() * 1 ) + ( getBrochureDesignCharges() * 1 );
+	return grandTotal.toFixed(2);
+}
+
+function getBrochureUnitPrice(){
+	//return unit price rounded off to 2 decimal places
+	//unit price = grand total / flyer qty
+	return ( ( getBrochureGrandTotal() * 1 ) / ( getBrochureQuantity() * 1 ) ).toFixed(2);
+}
+
 function displayBrochureCalculations(){
 	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
 	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
@@ -526,4 +540,6 @@ function displayBrochureCalculations(){
 	console.log("Printing Charges: " + getBrochurePrintingCharges() );
 	console.log("Labour Charges: " + getBrochureLabourCharges() );
 	console.log("Design Charges: " + getBrochureDesignCharges() );
+	console.log("Grand Total: " + getBrochureGrandTotal() );
+	console.log("Unit Price: " + getBrochureUnitPrice() );
 }
