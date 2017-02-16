@@ -378,10 +378,51 @@ function getBrochureMaterialsCost(){
 	//get final materials cost
 	//final materials cost = price w/o wastage + wastage
 	//return final materials cost rounded off to 2 decimal places
-	console.log("MaterialsCost: " + (priceWithoutWastage + wastage).toFixed(2) );
 	return (priceWithoutWastage + wastage).toFixed(2);
 }
 
+function getBrochurePrePressCharges(){
+	//get suitable plate type from quantity
+	//0 -> DIGITAL -> less than 300
+	//1 -> OFFSET -> more than 300
+	var plateType = 0;
+
+	if ( getBrochureQuantity() > 0 ) {
+
+		if ( getBrochureQuantity() > 300 ) {
+			plateType = 1;
+		}
+
+	}else{
+		//insert codes for handling 0 qty
+	}
+
+	//get plate qty from paper color
+	var plateQty = 0;
+
+	if ( getBrochurePaperColor()  == "full-color" ) {
+		plateQty = 4;
+	}else if( getBrochurePaperColor()  == "black-white" ){
+		plateQty = 1;
+	}
+
+	//get plate price from plate type
+	var platePrice = 0;
+
+	if ( plateType == 0 ) {
+		platePrice = 0.26;
+	}else if( plateType == 1 ){
+		platePrice = 15;
+	}
+
+	//get final prepress charges
+	//final prepress charges = plateQty x platePrice
+	//return final prepress charges rounded off to 2 decimal places
+	return (plateQty * platePrice).toFixed(2);
+}
+
 function displayBrochureCalculations(){
-	getBrochureMaterialsCost();
+	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
+	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
+	
 }
