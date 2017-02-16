@@ -421,8 +421,61 @@ function getBrochurePrePressCharges(){
 	return (plateQty * platePrice).toFixed(2);
 }
 
+function getBrochureFinishingCharges(){
+	//get paper type
+	var paperType = getBrochurePaperType();
+
+	//get qty
+	var paperQty = getBrochureQuantity();
+
+	//get paper cuts from paper size
+	var paperSize = getBrochurePaperSize();
+	var paperCuts = 0;
+
+	if ( paperSize == "a4" ) {
+		paperCuts = 8;
+	}else if( paperSize == "a5" ){
+		paperCuts = 16;
+	}
+
+	//get qty sheets
+	//qty sheets = qty/cuts
+	var qtySheets = paperQty/paperCuts;
+
+	//get wastage qty sheets
+	var wastageQtySheets = 0;
+
+	if ( paperType == "mattart" ) {
+		wastageQtySheets = qtySheets * 1.1;
+	}else if( paperType == "simili" ){
+		wastageQtySheets = qtySheets * 1.2;
+	}
+
+	//get cutting/trimming charges
+	var cuttingCharges = 0;
+	var cuttingPricePerUnit = 0.08;
+	if ( paperQty > 1000 ) {
+		cuttingPricePerUnit = 0.1;
+	}
+	cuttingCharges = wastageQtySheets *cuttingPricePerUnit;
+
+	//get perforation/folding charges
+	var foldingCharges = 0;
+	var foldingPricePerUnit = 0.01;
+	if ( paperQty > 2000 ) {
+		foldingPricePerUnit = 0.008;
+	}
+	foldingCharges = paperQty * foldingPricePerUnit;
+
+	//get final finishing charges
+	//final finishing charges = cuttingCharges + foldingCharges
+	//return final finishing charges rounded off to 2 decimal places
+	return (cuttingCharges + foldingCharges).toFixed(2);
+}
+
 function displayBrochureCalculations(){
 	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
 	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
+	console.log("Finishing Charges: " + getBrochureFinishingCharges() );
 	
 }
