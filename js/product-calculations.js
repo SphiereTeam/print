@@ -302,35 +302,86 @@ function displayFlyerCalculations(){
 
 function getBrochurePaperSize(){
 	var result = $('select[id=brochure-paper-size]').val();
-	console.log("Paper Size: " + result);
+	//console.log("Paper Size: " + result);
 
 	return result;
 }
 
 function getBrochurePaperType(){
 	var result = $('select[id=brochure-paper-type]').val();
-	console.log("Paper Type: " + result);
+	//console.log("Paper Type: " + result);
 
 	return result;
 }
 
 function getBrochurePaperColor(){
 	var result = $('select[id=brochure-paper-color]').val();
-	console.log("Paper Color: " + result);
+	//console.log("Paper Color: " + result);
 
 	return result;
 }
 
 function getBrochureQuantity(){
 	var result = $("#brochure-quantity").val();
-	console.log("Quantity: " + result);
+	//console.log("Quantity: " + result);
 
 	return result;
 }
 
+function getBrochureArtworkStatus(){
+	var result = $("#brochure-paper-artwork").is(':checked');
+	//console.log("Folded: " + result);
+
+	return result;
+}
+
+function getBrochureMaterialsCost(){
+	//get paper cuts from paper size
+	var paperSize = getBrochurePaperSize();
+	var paperCuts = 0;
+
+	if ( paperSize == "a4" ) {
+		paperCuts = 8;
+	}else if( paperSize == "a5" ){
+		paperCuts = 16;
+	}
+
+	//get qty
+	var paperQty = getBrochureQuantity();
+
+	//get paper pricing per ream from paper type
+	var paperType = getBrochurePaperType();
+	var paperPricingPerReam = 0;
+
+	if ( paperType == "mattart" ) {
+		paperPricingPerReam = 68;
+	}else if( paperType == "simili" ){
+		paperPricingPerReam = 40;
+	}
+
+	//get qty sheets
+	//qty sheets = qty/cuts
+	var qtySheets = paperQty/paperCuts;
+
+	//get qty reams per packets
+	//qty reams per packets = qty sheets/500
+	var qtyReamsPerPackets = qtySheets/500;
+
+	//get price w/o wastage
+	//price w/o wastage = qty reams per packets x pricing per ream
+	var priceWithoutWastage = qtyReamsPerPackets * paperPricingPerReam;
+
+	//get wastage
+	//wastage = price w/o wastage x 0.2
+	var wastage = priceWithoutWastage * 0.2;
+
+	//get final materials cost
+	//final materials cost = price w/o wastage + wastage
+	//return final materials cost rounded off to 2 decimal places
+	console.log("MaterialsCost: " + (priceWithoutWastage + wastage).toFixed(2) );
+	return (priceWithoutWastage + wastage).toFixed(2);
+}
+
 function displayBrochureCalculations(){
-	getBrochurePaperSize();
-	getBrochurePaperType();
-	getBrochurePaperColor();
-	getBrochureQuantity();
+	getBrochureMaterialsCost();
 }
