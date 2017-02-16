@@ -561,15 +561,51 @@ function getBrochureTotalPrice(){
 }
 
 function displayBrochureCalculations(){
-	console.log("=====");
-	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
-	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
-	console.log("Finishing Charges: " + getBrochureFinishingCharges() );
-	console.log("Printing Charges: " + getBrochurePrintingCharges() );
-	console.log("Labour Charges: " + getBrochureLabourCharges() );
-	console.log("Design Charges: " + getBrochureDesignCharges() );
-	console.log("Grand Total: " + getBrochureGrandTotal() );
-	console.log("Unit Price: " + getBrochureUnitPrice() );
-	console.log("Total Price: " + getBrochureTotalPrice() );
-	console.log("=====");
+	// console.log("=====");
+	// console.log("MaterialsCost: " + getBrochureMaterialsCost() );
+	// console.log("PrePress Charges: " + getBrochurePrePressCharges() );
+	// console.log("Finishing Charges: " + getBrochureFinishingCharges() );
+	// console.log("Printing Charges: " + getBrochurePrintingCharges() );
+	// console.log("Labour Charges: " + getBrochureLabourCharges() );
+	// console.log("Design Charges: " + getBrochureDesignCharges() );
+	// console.log("Grand Total: " + getBrochureGrandTotal() );
+	// console.log("Unit Price: " + getBrochureUnitPrice() );
+	// console.log("Total Price: " + getBrochureTotalPrice() );
+	// console.log("=====");
+
+	//clear existing html
+	$('#brochure-total-price').html('');
+
+	//check if all fields entered
+	if( ( getBrochurePaperSize() != "" ) && ( getBrochurePaperType() != "" ) && 
+		( getBrochurePaperColor() != "" ) && ( getBrochureQuantity() != "" )  ){
+		//check qty
+		var qty = getBrochureQuantity();
+		if( qty >= 1 && qty <= 50000 ){
+			//if qty within range
+
+			//append new html
+			$('#brochure-total-price').append(
+				"<h3> Materials: $" + getBrochureMaterialsCost() + "</h3>" +
+				"<h3> PrePress Charges: $" + getBrochurePrePressCharges() + "</h3>" +
+				"<h3> Finishing Charges: $" + getBrochureFinishingCharges() + "</h3>" +
+				"<h3> Printing Charges: $" + getBrochurePrintingCharges() + "</h3>" +
+				"<h3> Labour Charges: $" + getBrochureLabourCharges() + "</h3>" +
+				"<h3> Design Charges: $" + getBrochureDesignCharges() + "</h3>" +
+				"<h3> Grand Total: $" + getBrochureGrandTotal() + "</h3>" +
+				"<h3> Unit Price: $" + getBrochureUnitPrice() + "</h3>" +
+				"<h3> Total Price Plus Profit Margin: $" + getBrochureTotalPrice() + "</h3>"
+			);
+		}else{
+			//append new html
+			$('#brochure-total-price').append(
+				"<h3>Quantity can only be from 1 to 50000.</h3>"
+			);
+		}
+	}else{
+		//append new html
+		$('#brochure-total-price').append(
+			"<h3> Please enter paper size, paper type, paper color, and quantity. </h3>"
+		);
+	}
 }
