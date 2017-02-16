@@ -133,6 +133,7 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 				<ul class="resp-tabs-list hor_1">
 					
 					<li><i class="fh5co-tab-menu-icon"></i>Flyers</li>
+					<li><i class="fh5co-tab-menu-icon"></i>Brochures</li>
 					<li><i class="fh5co-tab-menu-icon "></i>Invitation Card</li>
 					<li><i class="fh5co-tab-menu-icon"></i>Paper Bags, Card Boxes, Customized Packaging</li>
 
@@ -146,7 +147,7 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 				</ul><!-- /.resp-tabs-list -->
 
 				<div class="resp-tabs-container hor_1">
-					
+					<!-- Start flyers -->
 					<div class="row">
 
 						<div class="col-md-12">
@@ -199,11 +200,70 @@ DESIGNED & DEVELOPED by FREEHTML5.CO
 
 								</div><!-- /.row -->
 
-							</form><!-- /#business-card-form -->
+							</form><!-- /#flyer-form -->
 
 						</div><!-- /.col-md-12 -->
 
 					</div><!-- /.row -->
+					<!-- End flyers -->
+
+					<!-- Start brochures -->
+					<div class="row">
+
+						<div class="col-md-12">
+							<h2 class="h2">Brochures</h2>
+						</div><!-- /.col-md-12 -->
+
+						<div class="col-md-12">
+
+							<form action="" id="brochure-form" onsubmit="return false">
+									
+								<h1>Price Calculator</h1>
+
+								<div class="row">
+									
+									<div class="col-md-6">
+										
+										<label>Paper Size</label>
+										<select id="brochure-paper-size" name='brochure-paper-size' class="form-control">
+											<option value="a4">A4</option>
+											<option value="a5">A5</option>
+										</select>
+
+										<label>Paper Type</label>
+										<select id="brochure-paper-type" name='brochure-paper-type' class="form-control">
+											<option value="mattart">Mattart</option>
+											<option value="simili">Simili</option>
+										</select>
+
+										<label>Paper Color</label>
+										<select id="brochure-paper-color" name='brochure-paper-color' class="form-control">
+											<option value="full-color">Full Color</option>
+											<option value="black-white">Black and White</option>
+										</select>
+
+										<label>Quantity</label>
+										<input id="brochure-quantity" type="number" min="1" max="50000" required/>
+
+										<label><input type="checkbox" id="brochure-paper-artwork" value="available"> Artwork Available</label>
+
+										<button onclick="displayBrochureCalculations()">Calculate</button>
+
+									</div><!-- /.col-md-6 -->
+									<div class="col-md-6 total-price">
+										
+										<div id="brochure-total-price"></div>
+
+									</div>
+
+								</div><!-- /.row -->
+
+							</form><!-- /#flyer-form -->
+
+						</div><!-- /.col-md-12 -->
+
+					</div><!-- /.row -->
+					<!-- End brochures -->
 
 					<div class="row">
 

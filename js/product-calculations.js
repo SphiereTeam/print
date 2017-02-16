@@ -1,5 +1,5 @@
 /*
-	Calculations for flyers
+	=== Calculations for flyers ===
 */
 
 function getFlyerPaperSize(){
@@ -294,4 +294,43 @@ function displayFlyerCalculations(){
 			"<h3> Please enter paper size, paper type, paper color, and quantity. </h3>"
 		);
 	}
+}
+
+/*
+	=== Calculations for brochures ===
+*/
+
+function getBrochurePaperSize(){
+	var result = $('select[id=brochure-paper-size]').val();
+	console.log("Paper Size: " + result);
+
+	return result;
+}
+
+function getBrochurePaperType(){
+	var result = $('select[id=brochure-paper-type]').val();
+	console.log("Paper Type: " + result);
+
+	return result;
+}
+
+function getBrochurePaperColor(){
+	var result = $('select[id=brochure-paper-color]').val();
+	console.log("Paper Color: " + result);
+
+	return result;
+}
+
+function getBrochureQuantity(){
+	var result = $("#brochure-quantity").val();
+	console.log("Quantity: " + result);
+
+	return result;
+}
+
+function displayBrochureCalculations(){
+	getBrochurePaperSize();
+	getBrochurePaperType();
+	getBrochurePaperColor();
+	getBrochureQuantity();
 }
