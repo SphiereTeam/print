@@ -473,9 +473,36 @@ function getBrochureFinishingCharges(){
 	return (cuttingCharges + foldingCharges).toFixed(2);
 }
 
+function getBrochurePrintingCharges(){
+	//get qty
+	var paperQty = getBrochureQuantity();
+	//console.log("Paper Qty: " + paperQty);
+
+	//get initial printing charges
+	//initial printing charges = paperQty / 2000
+	var initPrintCharges = paperQty / 2000;
+	//console.log("Initial Printing Charges: " + initPrintCharges);
+
+	//get printing charges per hour
+	var printChargesPerHour = 35;
+	if ( paperQty > 10000 ) {
+		printChargesPerHour = 40;
+	}
+	//console.log("Print Charges Per Hour: " + printChargesPerHour);
+
+	//get final printing charges
+	//final printing charges = initPrintCharges x printChargesPerHour
+	//return final printing charges rounded off to 2 decimal places
+	//console.log("Final Printing Charges: " + initPrintCharges * printChargesPerHour);
+	return (initPrintCharges * printChargesPerHour).toFixed(2);
+}
+
+function getBrochureLabourCharges(){ return 20; }
+
 function displayBrochureCalculations(){
 	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
 	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
 	console.log("Finishing Charges: " + getBrochureFinishingCharges() );
-	
+	console.log("Printing Charges: " + getBrochurePrintingCharges() );
+	console.log("Labour Charges: " + getBrochureLabourCharges() );
 }
