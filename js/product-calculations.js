@@ -499,10 +499,31 @@ function getBrochurePrintingCharges(){
 
 function getBrochureLabourCharges(){ return 20; }
 
+function getBrochureDesignCharges(){
+	//get qty
+	var paperQty = getBrochureQuantity();
+
+	//get initial design charges
+	//initial design charges = paperQty/1000
+	var initDesignCharges  = paperQty / 1000;
+
+	//get design per hour charges
+	var designPerHourCharges = 30;
+	if ( getBrochureArtworkStatus() ) {
+		designPerHourCharges = 10;
+	}
+
+	//get final design charges
+	//final design charges = initDesignCharges x designPerHourCharges
+	//return final design charges rounded off to 2 decimal places
+	return (initDesignCharges * designPerHourCharges).toFixed(2);
+}
+
 function displayBrochureCalculations(){
 	console.log("MaterialsCost: " + getBrochureMaterialsCost() );
 	console.log("PrePress Charges: " + getBrochurePrePressCharges() );
 	console.log("Finishing Charges: " + getBrochureFinishingCharges() );
 	console.log("Printing Charges: " + getBrochurePrintingCharges() );
 	console.log("Labour Charges: " + getBrochureLabourCharges() );
+	console.log("Design Charges: " + getBrochureDesignCharges() );
 }
