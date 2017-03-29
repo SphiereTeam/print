@@ -1,6 +1,6 @@
-/*
-	=== Calculations for flyers ===
-*/
+
+	//=== Calculations for flyers ===
+
 
 function getFlyerPaperSize(){
 	var result = $('select[id=flyer-paper-size]').val();
@@ -272,15 +272,7 @@ function displayFlyerCalculations(){
 
 			//append new html
 			$('#flyer-total-price').append(
-				"<h3> Materials: $" + getFlyerMaterialsCost() + "</h3>" +
-				"<h3> PrePress Charges: $" + getFlyerPrePressCharges() + "</h3>" +
-				"<h3> Finishing Charges: $" + getFlyerFinishingCharges() + "</h3>" +
-				"<h3> Printing Charges: $" + getFlyerPrintingCharges() + "</h3>" +
-				"<h3> Labour Charges: $" + getFlyerLabourCharges() + "</h3>" +
-				"<h3> Design Charges: $" + getFlyerDesignCharges() + "</h3>" +
-				"<h3> Grand Total: $" + getFlyerGrandTotal() + "</h3>" +
-				"<h3> Unit Price: $" + getFlyerUnitPrice() + "</h3>" +
-				"<h3> Total Price Plus Profit Margin: $" + getFlyerTotalPrice() + "</h3>"
+			"<h3> Total Price Plus Profit Margin: $" + getFlyerTotalPrice() + "</h3>"
 			);
 		}else{
 			//append new html
@@ -586,14 +578,6 @@ function displayBrochureCalculations(){
 
 			//append new html
 			$('#brochure-total-price').append(
-				"<h3> Materials: $" + getBrochureMaterialsCost() + "</h3>" +
-				"<h3> PrePress Charges: $" + getBrochurePrePressCharges() + "</h3>" +
-				"<h3> Finishing Charges: $" + getBrochureFinishingCharges() + "</h3>" +
-				"<h3> Printing Charges: $" + getBrochurePrintingCharges() + "</h3>" +
-				"<h3> Labour Charges: $" + getBrochureLabourCharges() + "</h3>" +
-				"<h3> Design Charges: $" + getBrochureDesignCharges() + "</h3>" +
-				"<h3> Grand Total: $" + getBrochureGrandTotal() + "</h3>" +
-				"<h3> Unit Price: $" + getBrochureUnitPrice() + "</h3>" +
 				"<h3> Total Price Plus Profit Margin: $" + getBrochureTotalPrice() + "</h3>"
 			);
 		}else{
